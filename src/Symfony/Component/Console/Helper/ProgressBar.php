@@ -67,8 +67,13 @@ final class ProgressBar
     /**
      * @param int $max Maximum steps (0 if unknown)
      */
-    public function __construct(OutputInterface $output, int $max = 0, float $minSecondsBetweenRedraws = 1 / 25)
-    {
+    public function __construct(
+        OutputInterface $output, 
+        int $max = 0, 
+        float $minSecondsBetweenRedraws = 1 / 25,
+        ?string $message = null,
+        ?string $format = null,
+    ) {
         if ($output instanceof ConsoleOutputInterface) {
             $output = $output->getErrorOutput();
         }
@@ -92,6 +97,14 @@ final class ProgressBar
 
         $this->startTime = time();
         $this->cursor = new Cursor($output);
+
+        if ($message) {
+            $this->setMessage($message);
+        }
+
+        if ($format) {
+            $this->setFormat($format);
+        }
     }
 
     /**
