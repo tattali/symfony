@@ -67,13 +67,7 @@ final class ProgressBar
     /**
      * @param int $max Maximum steps (0 if unknown)
      */
-    public function __construct(
-        OutputInterface $output, 
-        int $max = 0, 
-        float $minSecondsBetweenRedraws = 1 / 25,
-        ?string $message = null,
-        ?string $format = null,
-    ) {
+    public function __construct(OutputInterface $output, int $max = 0, float $minSecondsBetweenRedraws = 1 / 25, ?string $message = null, ?string $format = null) {
         if ($output instanceof ConsoleOutputInterface) {
             $output = $output->getErrorOutput();
         }
